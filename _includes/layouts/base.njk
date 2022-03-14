@@ -1,0 +1,85 @@
+{% from "ImgixUrl.njk" import ImgixUrl -%}
+
+{% set pageTitle = title or metadata.title %}
+{% if pageTitle != metadata.siteTitle %}
+  {% set pageTitle = pageTitle ~ " | " ~ metadata.siteTitle %}
+{% endif %}
+
+<!doctype html>
+<html class="antialiased scroll-smooth text-black" lang="{{ metadata.language }}" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>{{ pageTitle }}</title>
+
+    <script src="https://curious-cheerful.olets.dev/script.js" data-site="FSYFQZQY" defer></script>
+
+    <link rel="preload" href="/fonts/HeyAugust-subset.woff2" as="font" type="font/woff2" crossorigin=""/>
+
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+    <meta name="msapplication-TileColor" content="#ffc40d">
+    <meta name="theme-color" content="#ffffff">
+
+    <meta name="author" content="{{ metadata.author.name }}" />
+    <meta name="description" content="{{ description or metadata.description }}">
+
+    <meta property="og:title" content="{{ pageTitle }}">
+    <meta property="og:description" content="{{ description or metadata.description }}">
+    <meta property="og:url" content="{{ metadata.url }}">
+    <meta property="og:site_name" content="{{ metadata.site }}">
+    <meta property="og:type" content="website">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image" content="{{ ImgixUrl({
+      file: imageFilename or metadata.imageFilename,
+      config: {
+        h: 630,
+        w: 1200
+      }
+    }) }}">
+    <meta name="twitter:title" content="{{ pageTitle }}">
+    <meta name="twitter:creator" content="@olets">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:description" content="{{ description or metadata.description }}">
+    <meta name="twitter:image" content="{{ ImgixUrl({
+      file: imageFilename or metadata.imageFilename,
+      config: {
+        h: 471,
+        w: 942
+      }
+    }) }}">
+
+    <link rel="canonical" href="https://www.olets.dev/" />
+
+    <link href="mailto:{{ metadata.author.email }}" rel="me" />
+    <link href="https://twitter.com/olets" rel="me" />
+    <link href="https://github.com/olets" rel="me" />
+
+    <link rel="stylesheet" href="{{ '/css/index.css' | url }}">
+    <link rel="stylesheet" href="{{ '/css/prism-base16-monokai.dark.css' | url }}">
+
+    <link rel="alternate" href="{{ metadata.feed.path | url }}" type="application/atom+xml" title="{{ metadata.title }}">
+    <link rel="alternate" href="{{ metadata.jsonfeed.path | url }}" type="application/json" title="{{ metadata.title }}">
+  </head>
+
+  <body class="flex flex-col md:text-lg min-h-screen p-10">
+    <div class="flex-grow">
+      {{ content | safe }}
+    </div>
+
+    <footer class="pt-40 relative">
+      © Copyright Henry Bley-Vroman, 2022-present.
+
+      <p>
+        You can <a href="{{ footer.sourceLink }}">look at the source</a>.
+      </p>
+    </footer>
+
+    <!-- Current page: {{ page.url | url }} -->
+  </body>
+</html>

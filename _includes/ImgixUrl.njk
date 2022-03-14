@@ -1,0 +1,13 @@
+{% macro ImgixUrl(props = {}) -%}
+  {% set file = null -%}
+  {% if props.file -%}
+    {% set file = props.file -%}
+  {% endif -%}
+
+  {% set config = null -%}
+  {% if props.config -%}
+    {% set config = props.config -%}
+  {% endif -%}
+
+  https://olets.imgix.net/{{ file }}?{{ config|urlencode|replace("%3A", ":") -}}
+{% endmacro %}

@@ -1,0 +1,23 @@
+{
+  "title": "olets.dev",
+  "siteTitle": "olets.dev",
+  "url": "https://olets.dev/",
+  "language": "en-US",
+  "description": "Henry Bley-Vroman (olets)",
+  "feed": {
+    "subtitle": "Henry Bley-Vroman (olets)",
+    "filename": "feed.xml",
+    "path": "/feed/feed.xml",
+    "id": "https://olets.dev/"
+  },
+  "jsonfeed": {
+    "path": "/feed/feed.json",
+    "url": "https://olets.dev/feed/feed.json"
+  },
+  "author": {
+    "name": "Henry Bley-Vroman",
+    "email": "olets@olets.dev",
+    "url": "https://example.com/about-me/"
+  },
+  "imageFilename": "oletsdev-fb--waggle-confute-shad.jpg"
+}

@@ -1,0 +1,88 @@
+{% macro Card(props = {}) %}
+  {% set description = null %}
+  {% if props.description %}
+    {% set description = props.description %}
+  {% endif %}
+
+  {% set imageFilename = null %}
+  {% if props.imageFilename %}
+    {% set imageFilename = props.imageFilename %}
+  {% endif %}
+
+  {% set link = null %}
+  {% if props.link %}
+    {% set link = props.link %}
+  {% endif %}
+
+  {% set postscript = null %}
+  {% if props.postscript %}
+    {% set postscript = props.postscript %}
+  {% endif %}
+
+  {% set title = null %}
+  {% if props.title %}
+    {% set title = props.title %}
+  {% endif %}
+
+  {% from "Image.njk" import Image %}
+
+  {% if title %}
+    <article class="space-y-2">
+      <div class="group relative">
+        {% if link %}
+          <a
+            class="absolute focus:outline-none inset-0 peer rounded-2xl"
+            href="{{ link|url }}"
+          >
+            <div class="sr-only">{{ title }}</div>
+          </a>
+        {% endif %}
+
+        {% set classes %}
+          aspect-card border w-full rounded-t-2xl shadow transition-shadow ring-offset-2
+          peer-focus:ring peer-hover:ring
+          {% if description %}
+            rounded-b-md
+          {% else %}
+            rounded-b-2xl
+          {% endif %}
+        {% endset %}
+
+        {% if imageFilename %}
+          {{ Image(
+            {
+              classes: classes,
+              filename: imageFilename,
+              imgixConfig: {
+                ar: "1280:640",
+                fit: "crop",
+                w: 700
+              }
+            }
+          ) }}
+        {% endif %}
+
+        <div class="
+          bg-white mt-3 rounded-t-md rounded-b-2xl transition
+          peer-focus:text-link
+          peer-hover:text-link
+        ">
+          {% if title %}
+            <em
+              aria-hidden="true"
+              class="block font-semibold underline"
+            >
+              <span>{{ title }}</span>
+            </em>
+          {% endif %}
+
+          {{ description }}
+        </div>
+      </div>
+
+      {% if postscript %}
+        {{ postscript }}
+      {% endif %}
+    </article>
+  {% endif %}
+{% endmacro %}

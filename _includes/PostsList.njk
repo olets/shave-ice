@@ -1,0 +1,26 @@
+{% macro PostsList(props = {}) %}
+  {% from "PostCard.njk" import PostCard %}
+
+  {% set classes = null %}
+  {% if props.classes %}
+    {% set classes = props.classes %}
+  {% endif %}
+
+  {% set counterStart = null %}
+  {% if props.counterStart %}
+    {% set counterStart = props.counterStart %}
+  {% endif %}
+
+  {% set posts = null %}
+  {% if props.posts %}
+    {% set posts = props.posts %}
+  {% endif %}
+
+  <div>
+    <ol reversed class="gap-12 grid mt-8 {{ classes }}" style="counter-reset: start-from {{ (counterStart or postslist.length) + 1 }}">
+      {% for post in posts %}
+        <li>{{ PostCard({ post: post }) }}</li>
+      {% endfor %}
+    </ol>
+  </div>
+{% endmacro %}

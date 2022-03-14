@@ -1,0 +1,42 @@
+{
+  "heading": "Software",
+  "items": [
+      {
+          "description": "Save keystrokes in the terminal, but -unlike aliases- without forgetting the full command or making your history unintelligible",
+          "imageFilename": "zsh-abbr.jpg",
+          "link": "https://zsh-abbr.olets.dev",
+          "title": "zsh-abbr"
+      },
+      {
+          "description": "A beautiful, accelerated Git status zsh theme with a high data-to-ink ratio, dynamic content, and dynamic styles",
+          "imageFilename": "hometown.jpg",
+          "link": "https://github.com/olets/hometown-prompt",
+          "title": "Hometown Prompt"
+      },
+      {
+          "description": "Make the maintenance of long-lived branches painless by tracking branch relationships as code and automating rebase/merge workflows",
+          "imageFilename": "git-replay.jpg",
+          "link": "https://github.com/olets/git-replay",
+          "title": "git-replay"
+      },
+      {
+          "description": "Have an idea for a custom zsh theme that includes Git info, but you use Hometown or p10k for their speed? Use Git Prompt Kit components",
+          "imageFilename": "git-prompt-kit.jpg",
+          "link": "https://github.com/olets/git-prompt-kit",
+          "title": "Git Prompt Kit"
+      },
+      {
+          "description": "Light weight dependable tests and coverage reports for zsh software. Use it for csh, ksh, and sh too",
+          "imageFilename": "zsh-test-runner.jpg",
+          "link": "https://github.com/olets/zsh-test-runner",
+          "title": "zsh-test-runner"
+      },
+      {
+          "description": "Keep on top of your terminal tabs by titling each after its directory, its directory's parent, and its ongoing command if one is running",
+          "imageFilename": "zsh-window-title.jpg",
+          "link": "https://github.com/olets/zsh-window-title",
+          "title": "zsh-window-title"
+      }
+  ],
+  "summary": null
+}

@@ -1,0 +1,8 @@
+{% macro Text(props = {}) %}
+  {% set content = null %}
+  {% if props.content %}
+    {% set content = props.content %}
+  {% endif %}
+  
+  <div class="max-w-4xl">{{ content|safe }}</div>
+{% endmacro %}

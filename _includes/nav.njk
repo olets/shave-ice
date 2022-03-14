@@ -1,0 +1,75 @@
+{% from "Image.njk" import Image %}
+
+<nav class="space-y-4 text-right">
+  <div class="flex flex-col gap-4 items-end">
+    <div class="block relative">
+      {{ Image({
+        classes: "md:w-32 rounded-full w-16",
+        filename: bio.avatar.filename,
+        imgixConfig: {
+          ar: "1:1",
+          fit: "crop",
+          w: 160
+        }
+      }) }}
+
+      {{ Image({
+        classes: "absolute focus:opacity-100 hover:opacity-100 inset-0 opacity-0 rounded-full transition-opacity",
+        filename: bio.avatar.hoverFilename,
+        imgixConfig: {
+          ar: "1:1",
+          fit: "crop",
+          w: 160
+        }
+      }) }}
+    </div>
+
+    <div class="flex gap-4 items-center md:flex-col md:order-last">
+      <div>
+        <h2 class="sr-only">Social links</h2>
+
+        <ul class="flex md:grid gap-4 items-center justify-center list-none md:grid-cols-2">
+          {% for link in bio.socialLinks %}
+            <li>
+              <a href={{ link.href }}>
+                <span class="sr-only">{{ link.platform }}</span>
+                
+                <span
+                  class="block focus:text-link hover:text-link transition-colors md:w-12 w-8"
+                  aria-hidden="true"
+                >
+                  {% include link.platform ~ ".njk" %}
+                </span>
+              </a>
+            </li>
+          {% endfor %}
+        </ul>
+      </div>
+      
+      <a
+        class="block group md:underline no-underline"
+        href="maillto:olets@olets.dev"
+      >
+        <span class="sr-only">email</span>
+
+        <span class="hidden md:block">olets@olets.dev</span>
+
+        <span class="decoration-transparent group-focus:decoration-link group-hover:decoration-link md:hidden text-5xl transition-colors underline">✉️</span>
+      </a>
+    </div>
+  </div>
+
+  {#- Read more about `eleventy-navigation` at https://www.11ty.dev/docs/plugins/navigation/ #}
+  <ul class="flex gap-4 justify-end">
+    {%- for entry in collections.all | eleventyNavigation %}
+      <li>
+        <a
+          class="{% if entry.url == page.url %}no-underline text-link{% endif %}"
+          href="{{ entry.url | url }}"
+        >
+          {{ entry.title }}
+        </a>
+      </li>
+    {%- endfor %}
+  </ul>
+</nav>

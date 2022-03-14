@@ -1,0 +1,115 @@
+---
+layout: layouts/sidebar.njk
+templateClass: tmpl-post
+---
+
+{% from "Image.njk" import Image %}
+{% from "PostCard.njk" import PostCard %}
+{% from "Prose.njk" import Prose %}
+
+{% set nextPost = null %}
+{% set previousPost = null %}
+
+{% if collections.posts %}
+  {% set nextPost = collections.posts | getNextCollectionItem(page) %}
+  {% set previousPost = collections.posts | getPreviousCollectionItem(page) %}
+{% endif %}
+
+<div class="max-w-4xl space-y-14 w-full">
+  <div class="space-y-8">
+    <h1 class="heading-2">{{ title }}</h1>
+
+    <div class="opacity-80">Posted <time datetime="{{ page.date | htmlDateString }}">{{ page.date | readableDate }}</time></div>
+
+    {# {% if tags %}
+      <div>
+        <span class="font-bold">Tags:</span>
+
+        <ul class="flex-wrap gap-2 inline-flex list-none pl-0">
+          {% for tag in tags | sort | filterTagList %}
+            <li>
+              {% set tagUrl %}/tags/{{ tag | slug }}/{% endset %}
+
+              <a href="{{ tagUrl | url }}" class="post-tag">{{ tag }}</a>
+            </li>
+          {% endfor %}
+        </ul>
+      </div>
+    {% endif %} #}
+
+    {% if original.source and original.url %}
+      <p class="italic">A version of this post originally appeared on <a href="{{ original.url | url }}">{{ original.source }}</a></p>
+    {% endif %}
+  </div>
+
+  {% if imageFilename %}
+    <figure>
+      {{ Image({
+        filename: imageFilename,
+        imgixConfig: {
+          ar: "16:9",
+          fit: "facearea",
+          w: 1000
+        }
+      }) }}
+      
+      <figcaption class="mt-1 opacity-80 text-xs">
+        {% if imageDetails.title %}{{ imageDetails.title }}.{% endif %}
+
+        {% if imageDetails.author %}{{ imageDetails.author }}.{% endif %}
+        
+        {% if imageDetails.license and imageDetails.license.title %}
+          {% if imageDetails.license.url %}
+            <a href="{{ imageDetails.license.url | url }}">
+          {%- endif -%}
+          
+          {{ imageDetails.license.title -}}
+
+          {% if imageDetails.license.url -%}
+            </a>
+          {%- endif -%}
+          .
+        {% endif %}
+        
+        {% if imageDetails.url %}<a href="{{ imageDetails.url|url }}">Source</a>.{% endif %}
+    </figure>
+  {% endif %}
+
+  {% set proseContent %}
+    {{ content | safe }}
+  {% endset %}
+
+  <div>{{ Prose({ content: proseContent }) }}</div>
+
+  {% if nextPost or previousPost %}
+    <section class="border-t mt-20 p-0 pt-10">
+      <h2 class="sr-only">Related Posts</h2>
+
+      <div class="gap-12 grid md:grid-cols-2 lg:grid-cols-3 justify-between w-full">
+        {% if nextPost %}
+          <div>
+            <div class="heading-3 mb-8">Next</div>
+
+            {{ PostCard({ post: nextPost }) }}
+          </div>
+        {% endif %}
+
+        {% if nextPost and previousPost %}
+          <div class="hidden lg:block"></div>
+        {% endif %}
+
+        {% if previousPost %}
+          <div>
+            <div class="heading-3 mb-8">Previous</div>
+            
+            {{ PostCard({ post: previousPost }) }}
+          </div>
+        {% endif %}
+      </div>
+
+      <p class="mt-20 text-3xl">
+        <a href="{{ '/posts/' | url }}">See All Posts</a>
+      </p>
+    </section>
+  {% endif %}
+</div>

@@ -1,0 +1,80 @@
+---
+layout: layouts/full.njk
+eleventyNavigation:
+  key: Home
+  order: 1
+---
+
+{% from "Card.njk" import Card %}
+{% from "PostsList.njk" import PostsList %}
+{% from "Text.njk" import Text %}
+
+
+{% set postsText %}
+  See <a href="{{ "/posts"|url }}">all posts</a>.
+{% endset %}
+
+{% set softwareText %}
+  See <a href="https://github.com/olets">all projects</a>.
+{% endset %}
+
+<header class="container mx-auto space-y-12 md:space-y-16 lg:space-y-20">
+  <div class="flex flex-col gap-8 lg:gap-12 justify-between md:flex-row">
+    <div class="md:order-last">
+      {% include "nav.njk" %}
+    </div>
+
+    <div>
+      <h1 class="heading-1">Henry <span class="whitespace-nowrap">Bley-Vroman</span></h1>
+
+      <div class="mt-2 md:mt-4 lg:mt-8">
+        {{ Text({ content: bio.summary }) }}
+      </div>
+    </div>
+  </div>
+  
+  <div class="border md:hidden p-6 rounded-md space-y-2">
+    <div class="font-bold">On this page:</div>
+
+    <ul class="flex gap-4">
+      <li><a href="#latest">Latest {% if maxPosts > 1 %}Posts{% else %}Post{% endif %}</a></li>
+      <li><a href="#software">Software</a></li>
+    </ul>
+  </div>
+</header>
+
+<main class="grid xl:grid-cols-2 gap-24 container mx-auto mt-12 md:mt-16 lg:mt-20 space-y-12 md:space-y-0">
+  <section class="space-y-10 lg:space-y-16" id="latest">
+    {% set maxPosts = collections.posts.length | min(4) %}
+    {% set postslist = collections.posts | head(-maxPosts) %}
+    {% set postslistCounter = collections.posts | length %}
+
+    <h2 class="heading-2">Latest {% if maxPosts > 1 %}Posts{% else %}Post{% endif %}</h2>
+
+    <div class="text-3xl">
+      {{ Text({ content: postsText }) }}
+    </div>
+
+    {{ PostsList({
+      classes: "sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-2",
+      counterStart: postslistCounter,
+      posts: postslist|reverse
+    }) }}
+  </section>
+
+  <section class="space-y-10 lg:space-y-16" id="software">
+    <h2 class="heading-2">{{ software.heading }}</h2>
+
+    <div class="text-3xl">
+      {{ Text({ content: softwareText }) }}
+    </div>
+
+    <div class="gap-12 grid mt-8 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-2">
+      {% for card in software.items %}
+        <div>
+          {{ Card(card) }}
+        </div>
+      {% endfor %}
+    </div>
+  </section>
+</main>

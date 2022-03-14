@@ -1,0 +1,62 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  @font-face {
+    font-family: "Hey August";
+    src: url(../fonts/HeyAugust-subset.woff2) format("woff2");
+  }
+
+  a {
+    @apply decoration-link focus:text-link hover:text-link transition-colors underline;
+  }
+
+  em {
+    @apply font-bold not-italic;
+  }
+
+  svg path {
+    fill: currentColor;
+  }
+
+  .shiki {
+    @apply !bg-neutral-50 relative;
+  }
+
+  .shiki .language-id {
+    @apply select-none text-black text-right;
+  }
+
+  .shiki .language-id::before {
+    content: "language: ";
+  }
+}
+
+@layer components {
+  .external-link::after {
+    content: '\279A';
+  }
+  
+  .groundhog {
+    @apply absolute bg-center bg-contain bg-groundhog inset-10 sm:inset-12 md:inset-20 lg:inset-24 xl:inset-32 p-5 sm:p-10 md:p-20 lg:p-32 xl:p-40;
+  }
+
+  .heading-1 {
+    @apply font-serif text-5xl md:text-6xl lg:text-9xl;
+  }
+
+  .heading-2 {
+    @apply font-serif text-5xl md:text-6xl lg:text-8xl;
+  }
+
+  .heading-3 {
+    @apply font-serif text-4xl md:text-5xl lg:text-6xl;
+  }
+}
+
+@layer utilities {
+  .markdown-anchor {
+    @apply absolute no-underline opacity-50 p-4 focus:opacity-100 hover:opacity-100 transition text-lg font-sans right-full top-1/2 -translate-y-1/2;
+  }
+}

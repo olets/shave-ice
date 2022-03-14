@@ -1,0 +1,36 @@
+---
+permalink: /tags/
+layout: layouts/sidebar.njk
+---
+
+{% from "Prose.njk" import Prose %}
+{% from "PostsList.njk" import PostsList %}
+
+<div class="max-w-4xl space-y-14 w-full">
+  <div class="space-y-20">
+    <h1 class="heading-1">All Tags</h1>
+
+    <ul class="columns-2 lg:columns-3">
+      {% for tag in collections.tagList|sort %}
+        <li class="break-inside-avoid-column">
+          {% set tagUrl %}/tags/{{ tag | slug }}/{% endset %}
+          <a href="{{ tagUrl | url }}" class="post-tag">{{ tag }}</a>
+        </li>
+      {% endfor %}
+    </ul>
+
+    <section>
+      {% set maxPosts = collections.posts.length | min(3) %}
+      {% set postslist = collections.posts | head(-maxPosts) %}
+      {% set postslistCounter = collections.posts | length %}
+
+      <h2 class="heading-2">Latest Posts</h2>
+
+      {{ PostsList({
+        classes: "sm:grid-cols-2 lg:grid-cols-3",
+        counterStart: postslistCounter,
+        posts: postslist|reverse
+      }) }}
+    </section>
+  </div>
+</div>

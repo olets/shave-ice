@@ -1,0 +1,25 @@
+---
+layout: layouts/sidebar.njk
+permalink: /posts/
+eleventyNavigation:
+  key: Posts
+  order: 2
+---
+
+{% from "Prose.njk" import Prose %}
+{% from "PostsList.njk" import PostsList %}
+
+<div class="max-w-4xl space-y-14 w-full">
+  <div class="space-y-10">
+    <h1 class="heading-1">Posts</h1>
+
+    {{ PostsList({
+      classes: "sm:grid-cols-2 lg:grid-cols-3",
+      posts: collections.posts|reverse
+    })}}
+  </div>
+
+  <div>{{ Prose({ content: proseContent }) }}</div>
+
+  {# <p>See <a href="{{ '/tags/' | url }}">all tags</a>.</p> #}
+</div>

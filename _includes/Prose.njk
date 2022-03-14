@@ -1,0 +1,44 @@
+{% macro Prose(props = {}) %}
+  {% set content = null %}
+  {% if props.content %}
+    {% set content = props.content %}
+  {% endif %}
+  
+  {% if content %}
+    <div
+      class="
+        container max-w-none w-full
+        prose
+        
+        prose-black
+
+        prose-a:decoration-link
+        
+        prose-h1:font-normal prose-h1:heading-2 prose-h1:max-w-4xl prose-h1:mb-5 prose-h1:mt-10 prose-h1:relative prose-h1:text-black prose-h1:w-full
+        prose-h2:font-normal prose-h2:heading-3 prose-h2:max-w-2xl prose-h2:mb-5 prose-h2:mt-10 prose-h2:relative prose-h2:text-black prose-h2:w-full
+        prose-h3:margin-y-0 prose-h3:max-w-2xl prose-h3:mb-5 prose-h3:mt-10 prose-h3:relative prose-h3:text-black prose-h3:w-full
+        prose-h4:margin-y-0 prose-h4:max-w-2xl prose-h4:mb-5 prose-h4:mt-10 prose-h4:relative prose-h4:text-black prose-h4:w-full
+        prose-h5:margin-y-0 prose-h5:max-w-2xl prose-h5:mb-5 prose-h5:mt-10 prose-h5:relative prose-h5:text-black prose-h5:w-full
+        prose-h6:margin-y-0 prose-h6:max-w-2xl prose-h6:mb-5 prose-h6:mt-10 prose-h6:relative prose-h6:text-black prose-h6:w-full
+        
+        prose-p:w-full prose-p:max-w-xl
+        
+        prose-ol:w-full prose-ol:max-w-xl
+        
+        prose-ul:w-full prose-ul:max-w-xl
+        
+        prose-pre:max-w-3xl prose-pre:my-0 prose-pre:ring prose-pre:ring-2 prose-pre:ring-accent-100 prose-pre:rounded prose-pre:w-full
+        
+        prose-code:after:content-[''] prose-code:before:content-[''] prose-code:bg-neutral-50 prose-code:border prose-code:font-normal prose-code:p-1 prose-code:rounded
+        
+        prose-code:prose-pre:bg-none prose-code:prose-pre:border-none prose-code:prose-pre:p-0
+
+        prose-pre:prose-table:mb-0
+
+        prose-table:max-w-3xl
+
+        prose-code:prose-pre:w-full prose-code:prose-pre:overflow-x-auto prose-code:prose-pre:block
+      "
+    >{{ content|safe }}</div>
+  {% endif %}
+{% endmacro %}

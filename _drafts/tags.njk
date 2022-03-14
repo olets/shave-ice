@@ -1,0 +1,35 @@
+---
+pagination:
+  data: collections
+  size: 1
+  alias: tag
+  filter:
+    - all
+    - nav
+    - post
+    - posts
+    - tagList
+  addAllPagesToCollections: true
+layout: layouts/sidebar.njk
+eleventyComputed:
+  title: Tagged “{{ tag }}”
+permalink: /tags/{{ tag | slug }}/
+---
+
+{% from "Prose.njk" import Prose %}
+{% from "PostsList.njk" import PostsList %}
+
+<div class="max-w-4xl space-y-14 w-full">
+  <div class="space-y-10">
+    <h1 class="heading-1">Posts Tagged “{{ tag }}”</h1>
+
+    {{ PostsList({
+      classes: "sm:grid-cols-2 lg:grid-cols-3",
+      posts: collections[ tag ]|reverse
+    })}}
+  </div>
+
+  <div>{{ Prose({ content: proseContent }) }}</div>
+
+  <p>See <a href="{{ '/tags/' | url }}">all tags</a>.</p>
+</div>

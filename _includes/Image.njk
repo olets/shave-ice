@@ -1,0 +1,40 @@
+{% macro Image(props = {}) %}
+  {% set alt = null %}
+  {% if props.alt %}
+    {% set alt = props.alt %}
+  {% endif %}
+
+  {% set classes = null %}
+  {% if props.classes %}
+    {% set classes = props.classes %}
+  {% endif %}
+
+  {% set filename = null %}
+  {% if props.filename %}
+    {% set filename = props.filename %}
+  {% endif %}
+
+  {% set imgixConfig = null %}
+  {% if props.imgixConfig %}
+    {% set imgixConfig = props.imgixConfig %}
+  {% endif %}
+
+  {% from "ImgixUrl.njk" import ImgixUrl %}
+  
+  {% set src = ImgixUrl({
+    file: filename,
+    config: imgixConfig
+  }) %}
+
+  {% set fallbackSrc = ImgixUrl({
+    file: "beach.jpg",
+    config: imgixConfig
+  }) %}
+
+  <img
+    alt="{{ alt }}"
+    class="{{ classes }}"
+    src="{{ src }}"
+    onerror="this.onerror=null; this.src='{{ fallbackSrc }}'"
+  >
+{% endmacro %}

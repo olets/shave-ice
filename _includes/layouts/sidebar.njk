@@ -1,0 +1,28 @@
+---
+layout: layouts/base.njk
+templateClass: tmpl-post
+---
+
+{% from "Prose.njk" import Prose %}
+
+{% set nextPost = null %}
+{% set previousPost = null %}
+
+{% if collections.posts %}
+  {% set nextPost = collections.posts | getNextCollectionItem(page) %}
+  {% set previousPost = collections.posts | getPreviousCollectionItem(page) %}
+{% endif %}
+
+<div class="container flex flex-col md:flex-row gap-10 justify-between mx-auto w-full">
+  <div class="hidden xl:block w-48 flex-shrink-0"></div>
+
+  <div class="md:order-last md:w-48 flex-shrink-0">
+    <nav class="sticky top-10">
+      {% include "nav.njk" %}
+    </nav>
+  </div>
+
+  <div class="flex-grow min-w-0">
+    {{ content|safe }}
+  </div>
+</div>
