@@ -81,3 +81,5 @@ fields:
     max: 
     step: 
   hidden: true
+pages:
+- posts/uncle-clay-s-house-of-pure-aloha.md
