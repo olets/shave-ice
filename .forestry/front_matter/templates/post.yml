@@ -20,5 +20,3 @@ fields:
   label: layout
   hidden: true
   default: layouts/post.njk
-pages:
-
