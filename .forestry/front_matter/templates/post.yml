@@ -40,7 +40,7 @@ fields:
   config:
     required: false
   label: Image Filename
-- name: image_details
+- name: image
   type: field_group
   config: {}
   fields:
@@ -64,12 +64,12 @@ fields:
     config:
       required: false
     label: Title
-  - name: url
-    type: text
+  - name: asset
+    type: file
     config:
-      required: false
-    label: URL
-  label: Image Details
+      maxSize: 64
+    label: Asset
+  label: Image
 - name: id
   type: number
   label: ID
