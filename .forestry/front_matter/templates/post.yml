@@ -20,3 +20,64 @@ fields:
   label: layout
   hidden: true
   default: layouts/post.njk
+- name: original
+  type: field_group
+  config: {}
+  fields:
+  - name: source
+    type: text
+    config:
+      required: false
+    label: Source
+  - name: url
+    type: text
+    config:
+      required: false
+    label: URL
+  label: Original
+- name: image_filename
+  type: text
+  config:
+    required: false
+  label: Image Filename
+- name: image_details
+  type: field_group
+  config: {}
+  fields:
+  - name: author
+    type: text
+    config:
+      required: false
+    label: Author
+  - name: license
+    type: field_group
+    config: {}
+    fields:
+    - name: name
+      type: text
+      config:
+        required: false
+      label: Name
+    label: License
+  - name: title
+    type: text
+    config:
+      required: false
+    label: Title
+  - name: url
+    type: text
+    config:
+      required: false
+    label: URL
+  label: Image Details
+- name: id
+  type: number
+  label: ID
+  description: ''
+  default: 0
+  required: true
+  config:
+    min: 
+    max: 
+    step: 
+  hidden: true
